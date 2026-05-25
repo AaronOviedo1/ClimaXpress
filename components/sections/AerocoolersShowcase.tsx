@@ -15,7 +15,6 @@ import {
   Ruler,
   Volume2,
   Wind,
-  Zap,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
@@ -30,6 +29,7 @@ type Model = {
   name: string;
   tagline: string;
   startIndex: number;
+  pricePerDay: number;
   specs: Spec[];
 };
 
@@ -38,7 +38,7 @@ const gallery: GalleryImage[] = [
   { src: '/products/aerocoolers/ECO_FRESCO.png' },
   { src: '/products/aerocoolers/IMG_4064.png', rotate: true },
   { src: '/products/aerocoolers/TURBO_FRIO.png' },
-  { src: '/products/aerocoolers/IMG_1038.jpeg', rotate: true },
+  { src: '/products/aerocoolers/IMG_1038.jpeg' },
   { src: '/products/aerocoolers/ecoyturbo01.png', rotate: true },
   { src: '/products/aerocoolers/ecoyturbo02.png', rotate: true },
   { src: '/products/aerocoolers/ecoyturbo03.png', rotate: true },
@@ -52,10 +52,10 @@ const models: Model[] = [
     name: 'Eco-Fresco',
     tagline: 'Compacto y eficiente para espacios medianos.',
     startIndex: 0,
+    pricePerDay: 450,
     specs: [
       { label: 'Flujo de aire', value: '3,600 CFM', icon: Wind },
       { label: 'Área', value: '35 – 40 m²', icon: Maximize2 },
-      { label: 'Potencia', value: '149.2 W', icon: Zap },
       { label: 'Capacidad', value: '40 L', icon: Droplets },
       { label: 'Peso', value: '18 kg', icon: Package },
       { label: 'Dimensiones', value: '95 × 61 × 41 cm', icon: Ruler },
@@ -67,10 +67,10 @@ const models: Model[] = [
     name: 'Turbo-Frío',
     tagline: 'Mayor flujo y cobertura para espacios grandes.',
     startIndex: 2,
+    pricePerDay: 650,
     specs: [
       { label: 'Flujo de aire', value: '5,300 CFM', icon: Wind },
       { label: 'Área', value: '70 m²', icon: Maximize2 },
-      { label: 'Potencia', value: '400 W', icon: Zap },
       { label: 'Capacidad', value: '55 L', icon: Droplets },
       { label: 'Peso', value: '38 kg', icon: Package },
       { label: 'Ruido', value: '60 dB (A)', icon: Volume2 },
@@ -157,12 +157,6 @@ export function AerocoolersShowcase() {
             0
           )
           .fromTo(
-            '[data-cool-eyebrow]',
-            { x: -40, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.6 },
-            0.3
-          )
-          .fromTo(
             '[data-cool-title]',
             { x: -60, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.8 },
@@ -179,6 +173,12 @@ export function AerocoolersShowcase() {
             { x: -30, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.5 },
             0.75
+          )
+          .fromTo(
+            '[data-cool-price]',
+            { x: -30, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5 },
+            0.82
           )
           .fromTo(
             '[data-cool-spec]',
@@ -244,19 +244,12 @@ export function AerocoolersShowcase() {
         className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-brand-light/20 blur-3xl animate-drift-slow"
       />
 
-      <Container className="relative z-10 grid min-h-screen items-center gap-10 py-24 md:grid-cols-2 md:gap-12 md:py-0">
+      <Container className="relative z-10 grid min-h-screen items-center gap-10 pt-24 pb-12 md:grid-cols-2 md:gap-12 md:pt-28 md:pb-0">
         <div data-cool-text className="md:col-start-1 md:row-start-1">
-          <div
-            data-cool-eyebrow
-            className="inline-flex items-center gap-2 rounded-full border border-brand-light/30 bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-light"
-          >
-            <Wind className="h-3.5 w-3.5" aria-hidden />
-            01 — Frescura
-          </div>
           <h2
             id="aero-title"
             data-cool-title
-            className="mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
+            className="text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
           >
             <span className="bg-gradient-to-r from-white to-brand-light bg-clip-text text-transparent">
               Aerocoolers
@@ -266,8 +259,7 @@ export function AerocoolersShowcase() {
             data-cool-copy
             className="mt-6 max-w-md text-balance text-lg text-white/70"
           >
-            Aire fresco al instante para bodegas, talleres, terrazas y eventos.
-            Te llevamos el equipo, lo instalamos y listo.
+            Lo llevamos a domicilio, instalamos y recogemos, tu renta incluye mangueras y extensiones.
           </p>
 
           {/* Tabs */}
@@ -300,6 +292,20 @@ export function AerocoolersShowcase() {
 
           <p className="mt-3 text-sm text-white/55">{model.tagline}</p>
 
+          {/* Precio */}
+          <div data-cool-price className="mt-5">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em]">
+              <span className="text-brand-light">Renta</span>
+              <span className="text-white/45"> · + servicio a domicilio</span>
+            </p>
+            <div className="mt-1 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">
+                ${model.pricePerDay.toLocaleString('es-MX')}
+              </span>
+              <span className="text-sm text-white/60">/ día</span>
+            </div>
+          </div>
+
           {/* Specs grid */}
           <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-4">
             {model.specs.map(({ label, value, icon: Icon }) => (
@@ -326,7 +332,7 @@ export function AerocoolersShowcase() {
 
         <div
           data-cool-product
-          className="relative mx-auto flex h-72 w-72 items-center justify-center sm:h-96 sm:w-96 md:col-start-2 md:row-span-2 md:row-start-1 md:h-[36rem] md:w-[36rem]"
+          className="relative mx-auto flex h-72 w-72 items-center justify-center sm:h-96 sm:w-96 md:col-start-2 md:row-span-2 md:row-start-1 md:h-[26rem] md:w-[26rem] lg:h-[30rem] lg:w-[30rem]"
         >
           <div
             aria-hidden
@@ -402,14 +408,14 @@ export function AerocoolersShowcase() {
           </div>
         </div>
 
-        <div data-cool-cta className="md:col-start-1 md:row-start-2 md:mt-0 mt-4">
+        <div data-cool-cta className="mt-4 flex justify-center md:col-start-1 md:row-start-2 md:mt-0">
           <a
             href={whatsappLink(
               `Hola ClimaXpress, me interesa rentar un aerocooler ${model.name}`
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-light px-7 text-base font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(79,179,217,0.7)] transition-all duration-300 hover:scale-[1.03]"
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(37,211,102,0.7)] transition-all duration-300 hover:scale-[1.03] hover:bg-[#1ebf5a]"
           >
             <MessageCircle className="h-5 w-5" aria-hidden />
             Cotizar {model.name}

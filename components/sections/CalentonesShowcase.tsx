@@ -8,14 +8,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Disc,
-  Flame,
   Layers,
   Maximize2,
   MessageCircle,
   MoveVertical,
   Package,
   Ruler,
-  Tag,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
@@ -30,6 +28,8 @@ type Model = {
   name: string;
   tagline: string;
   startIndex: number;
+  pricePerDay: number;
+  priceIncludes?: string;
   specs: Spec[];
 };
 
@@ -55,8 +55,9 @@ const models: Model[] = [
     name: 'Café Obscuro',
     tagline: 'Fire Sense en acero con acabado café oscuro.',
     startIndex: 0,
+    pricePerDay: 550,
+    priceIncludes: 'Gas incluido',
     specs: [
-      { label: 'Marca', value: 'Fire Sense', icon: Tag },
       ...sharedSpecs,
       { label: 'Altura', value: '232 cm', icon: MoveVertical },
       { label: 'Material', value: 'Acero', icon: Layers },
@@ -68,8 +69,9 @@ const models: Model[] = [
     name: 'Gris Claro',
     tagline: 'Fire Sense en acero con acabado gris claro.',
     startIndex: 1,
+    pricePerDay: 550,
+    priceIncludes: 'Gas incluido',
     specs: [
-      { label: 'Marca', value: 'Fire Sense', icon: Tag },
       ...sharedSpecs,
       { label: 'Altura', value: '232 cm', icon: MoveVertical },
       { label: 'Material', value: 'Acero', icon: Layers },
@@ -81,8 +83,9 @@ const models: Model[] = [
     name: 'Café Gratinado',
     tagline: 'Estufa en metal con acabado café gratinado.',
     startIndex: 2,
+    pricePerDay: 550,
+    priceIncludes: 'Gas incluido',
     specs: [
-      { label: 'Marca', value: 'N/A', icon: Tag },
       ...sharedSpecs,
       { label: 'Altura', value: '1.7 – 2 m', icon: MoveVertical },
       { label: 'Material', value: 'Metal', icon: Layers },
@@ -168,12 +171,6 @@ export function CalentonesShowcase() {
             0
           )
           .fromTo(
-            '[data-warm-eyebrow]',
-            { x: -40, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.6 },
-            0.3
-          )
-          .fromTo(
             '[data-warm-title]',
             { x: -60, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.8 },
@@ -190,6 +187,12 @@ export function CalentonesShowcase() {
             { x: -30, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.5 },
             0.75
+          )
+          .fromTo(
+            '[data-warm-price]',
+            { x: -30, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5 },
+            0.82
           )
           .fromTo(
             '[data-warm-spec]',
@@ -255,19 +258,12 @@ export function CalentonesShowcase() {
         className="pointer-events-none absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-brand-sun/25 blur-3xl animate-drift-slow"
       />
 
-      <Container className="relative z-10 grid min-h-screen items-center gap-10 py-24 md:grid-cols-2 md:gap-12 md:py-0">
+      <Container className="relative z-10 grid min-h-screen items-center gap-10 pt-24 pb-12 md:grid-cols-2 md:gap-12 md:pt-28 md:pb-0">
         <div data-warm-text className="md:col-start-1 md:row-start-1">
-          <div
-            data-warm-eyebrow
-            className="inline-flex items-center gap-2 rounded-full border border-brand-sun/30 bg-brand-sun/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-sun"
-          >
-            <Flame className="h-3.5 w-3.5" aria-hidden />
-            02 — Calor
-          </div>
           <h2
             id="cal-title"
             data-warm-title
-            className="mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
+            className="text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
           >
             <span className="bg-gradient-to-r from-brand-sun to-[#f08018] bg-clip-text text-transparent">
               Calentones
@@ -277,9 +273,7 @@ export function CalentonesShowcase() {
             data-warm-copy
             className="mt-6 max-w-md text-balance text-lg text-white/70"
           >
-            Estufas de patio a gas. Calor radiante para terrazas, jardines y
-            eventos al aire libre — llegamos con todo y los dejamos listos para
-            encender.
+            Ofrecemos variedad, escoge el color que mas se acomode a tu evento.
           </p>
 
           {/* Tabs */}
@@ -312,6 +306,23 @@ export function CalentonesShowcase() {
 
           <p className="mt-3 text-sm text-white/55">{model.tagline}</p>
 
+          {/* Precio */}
+          <div data-warm-price className="mt-5">
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em]">
+              <span className="text-brand-sun">Renta</span>
+              {model.priceIncludes && (
+                <span className="text-white/45"> · {model.priceIncludes}</span>
+              )}
+              <span className="text-white/45"> · + servicio a domicilio</span>
+            </p>
+            <div className="mt-1 flex items-baseline gap-2">
+              <span className="text-4xl font-bold text-white">
+                ${model.pricePerDay.toLocaleString('es-MX')}
+              </span>
+              <span className="text-sm text-white/60">/ día</span>
+            </div>
+          </div>
+
           {/* Specs grid */}
           <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-4">
             {model.specs.map(({ label, value, icon: Icon }) => (
@@ -338,7 +349,7 @@ export function CalentonesShowcase() {
 
         <div
           data-warm-product
-          className="relative mx-auto flex h-72 w-72 items-center justify-center sm:h-96 sm:w-96 md:col-start-2 md:row-span-2 md:row-start-1 md:h-[36rem] md:w-[36rem]"
+          className="relative mx-auto flex h-72 w-72 items-center justify-center sm:h-96 sm:w-96 md:col-start-2 md:row-span-2 md:row-start-1 md:h-[26rem] md:w-[26rem] lg:h-[30rem] lg:w-[30rem]"
         >
           <div
             aria-hidden
@@ -414,14 +425,14 @@ export function CalentonesShowcase() {
           </div>
         </div>
 
-        <div data-warm-cta className="md:col-start-1 md:row-start-2 md:mt-0 mt-4">
+        <div data-warm-cta className="mt-4 flex justify-center md:col-start-1 md:row-start-2 md:mt-0">
           <a
             href={whatsappLink(
               `Hola ClimaXpress, me interesa rentar un calentón ${model.name}`
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-brand-sun px-7 text-base font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(245,185,25,0.7)] transition-all duration-300 hover:scale-[1.03]"
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(37,211,102,0.7)] transition-all duration-300 hover:scale-[1.03] hover:bg-[#1ebf5a]"
           >
             <MessageCircle className="h-5 w-5" aria-hidden />
             Cotizar {model.name}

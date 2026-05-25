@@ -160,57 +160,83 @@ export function HowItWorks() {
           </h2>
         </div>
 
-        {/* Steps - editorial 3-column */}
-        <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
-          {steps.map(({ num, eyebrow, title, copy, accent, badge, cta }) => {
-            const isSun = accent === 'sun';
-            const numColor = isSun ? 'text-brand-sun/25' : 'text-white/10';
-            const eyebrowColor = isSun ? 'text-brand-sun' : 'text-brand-light';
-            const eyebrowBg = isSun
-              ? 'bg-brand-sun/10 border-brand-sun/30'
-              : 'bg-brand/10 border-brand-light/30';
-            return (
-              <div key={num} data-step-block className="relative">
-                <span
-                  className={`select-none font-mono text-7xl font-bold leading-none md:text-8xl ${numColor}`}
-                  aria-hidden
+        {/* Steps — mobile timeline / desktop 3-column editorial */}
+        <div className="relative mt-12 md:mt-16">
+          {/* Mobile: vertical timeline line */}
+          <div
+            aria-hidden
+            className="absolute bottom-6 left-5 top-6 w-px bg-gradient-to-b from-brand-light/40 via-brand-sun/40 to-brand-light/40 md:hidden"
+          />
+
+          <div className="grid gap-8 md:grid-cols-3 md:gap-8 lg:gap-12">
+            {steps.map(({ num, eyebrow, title, copy, accent, badge, cta }) => {
+              const isSun = accent === 'sun';
+              const numColor = isSun ? 'text-brand-sun/25' : 'text-white/10';
+              const eyebrowColor = isSun ? 'text-brand-sun' : 'text-brand-light';
+              const eyebrowBg = isSun
+                ? 'bg-brand-sun/10 border-brand-sun/30'
+                : 'bg-brand/10 border-brand-light/30';
+              const circleStyle = isSun
+                ? 'border-brand-sun/50 bg-brand-sun/15 text-brand-sun'
+                : 'border-brand-light/50 bg-brand-light/15 text-brand-light';
+              return (
+                <div
+                  key={num}
+                  data-step-block
+                  className="relative pl-16 md:pl-0"
                 >
-                  {num}
-                </span>
-                <div className="mt-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span
-                      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] ${eyebrowColor} ${eyebrowBg}`}
-                    >
-                      {eyebrow}
-                    </span>
-                    {cta && (
-                      <a
-                        href={whatsappLink(cta.message)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex h-7 items-center justify-center gap-1.5 rounded-full bg-[#25D366] px-3 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_6px_18px_-6px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-[1.04] hover:bg-[#1ebf5a]"
+                  {/* Mobile: small numbered circle, sits on the line */}
+                  <div
+                    aria-hidden
+                    className={`absolute left-0 top-0 z-10 flex h-10 w-10 items-center justify-center rounded-full border bg-ink font-mono text-sm font-bold md:hidden ${circleStyle}`}
+                  >
+                    {num.replace('0', '')}
+                  </div>
+                  {/* Desktop: huge editorial number */}
+                  <span
+                    className={`hidden select-none font-mono font-bold leading-none md:block md:text-8xl ${numColor}`}
+                    aria-hidden
+                  >
+                    {num}
+                  </span>
+
+                  <div className="md:mt-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] ${eyebrowColor} ${eyebrowBg}`}
                       >
-                        <MessageCircle className="h-3.5 w-3.5" aria-hidden />
-                        {cta.label}
-                      </a>
+                        {eyebrow}
+                      </span>
+                      {cta && (
+                        <a
+                          href={whatsappLink(cta.message)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex h-7 items-center justify-center gap-1.5 rounded-full bg-[#25D366] px-3 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_6px_18px_-6px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-[1.04] hover:bg-[#1ebf5a]"
+                        >
+                          <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+                          {cta.label}
+                        </a>
+                      )}
+                    </div>
+                    <h3 className="mt-2 text-xl font-bold text-white md:mt-3 md:text-2xl">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/65 md:mt-3">
+                      {copy}
+                    </p>
+
+                    {badge && (
+                      <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-brand-sun/30 bg-brand-sun/10 px-3 py-1 text-xs font-semibold text-brand-sun">
+                        <Sparkles className="h-3 w-3" aria-hidden />
+                        {badge}
+                      </span>
                     )}
                   </div>
-                  <h3 className="mt-3 text-2xl font-bold text-white">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/65">
-                    {copy}
-                  </p>
-
-                  {badge && (
-                    <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-brand-sun/30 bg-brand-sun/10 px-3 py-1 text-xs font-semibold text-brand-sun">
-                      <Sparkles className="h-3 w-3" aria-hidden />
-                      {badge}
-                    </span>
-                  )}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Gallery — carrusel de ejemplos reales */}

@@ -144,7 +144,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.6)_1px,transparent_1px),radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.4)_1px,transparent_1px),radial-gradient(circle_at_40%_60%,rgba(255,255,255,0.5)_1px,transparent_1px)] [background-size:300px_300px,250px_250px,200px_200px]"
       />
 
-      <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-start gap-6 px-5 pb-12 pt-28 sm:pt-32 md:grid md:min-h-screen md:grid-cols-2 md:items-center md:justify-center md:gap-10 md:px-6 md:py-0">
+      <Container className="relative z-10 flex min-h-[100svh] flex-col items-center justify-start gap-6 px-5 pb-12 pt-28 sm:pt-32 md:grid md:min-h-screen md:grid-cols-2 md:items-center md:justify-center md:gap-10 md:px-6 md:pt-32 md:pb-0">
         {/* Logo — solo desktop (col 2). Oculto en móvil */}
         <div
           data-hero-product
@@ -275,7 +275,7 @@ export function Hero() {
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-brand-sun px-8 text-base font-semibold text-ink shadow-[0_10px_40px_-10px_rgba(245,185,25,0.7)] transition-all duration-300 hover:scale-[1.03] hover:brightness-105 sm:w-auto"
+              className="group inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(37,211,102,0.7)] transition-all duration-300 hover:scale-[1.03] hover:bg-[#1ebf5a] sm:w-auto"
             >
               <MessageCircle className="h-5 w-5" aria-hidden />
               Cotizar por WhatsApp

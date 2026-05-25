@@ -6,10 +6,10 @@ export const siteConfig = {
     'Renta e instalación de aerocoolers y calentones de agua a gas. Climatización eficiente y agua caliente al instante con asesoría, instalación profesional y garantía.',
   // TODO: reemplazar con el número real de WhatsApp en formato internacional sin "+"
   whatsappNumber:
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '521XXXXXXXXXX',
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '5216621498888',
   // TODO: reemplazar con el email real de contacto
   contactEmail:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'contacto@climaxpress.com',
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'climaxpresshmo@gmail.com',
   socials: {
     instagram: 'https://www.instagram.com/climaxpress_/',
     facebook:

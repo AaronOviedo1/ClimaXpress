@@ -67,6 +67,15 @@ const config: Config = {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0)' },
         },
+        'pulse-ring': {
+          '0%': { transform: 'scale(1)', opacity: '0.6' },
+          '70%': { transform: 'scale(1.6)', opacity: '0' },
+          '100%': { transform: 'scale(1.6)', opacity: '0' },
+        },
+        'pulse-dot': {
+          '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+          '50%': { transform: 'scale(1.15)', opacity: '0.85' },
+        },
       },
       animation: {
         float: 'float 6s ease-in-out infinite',
@@ -77,6 +86,8 @@ const config: Config = {
         'drift-slow': 'drift 28s ease-in-out infinite alternate',
         marquee: 'marquee 60s linear infinite',
         'marquee-reverse': 'marquee-reverse 80s linear infinite',
+        'pulse-ring': 'pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-dot': 'pulse-dot 2s ease-in-out infinite',
       },
       boxShadow: {
         card: '0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.06)',

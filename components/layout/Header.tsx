@@ -29,31 +29,56 @@ export function Header() {
     <header className="fixed inset-x-0 top-3 z-40 px-3 mt-safe md:top-4 md:px-6">
       <div
         className={cn(
-          'mx-auto flex max-w-6xl items-center gap-2 rounded-full border px-2 py-2 backdrop-blur-xl transition-all duration-500 md:px-3',
+          'relative mx-auto flex max-w-6xl items-center gap-2 overflow-hidden rounded-full border px-2 py-2 backdrop-blur-xl transition-all duration-500 md:px-3',
           scrolled
             ? 'border-white/15 bg-ink/70 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.7)]'
             : 'border-white/[0.07] bg-ink/25 shadow-[0_4px_24px_-12px_rgba(0,0,0,0.5)]'
         )}
       >
-        {/* LEFT: WhatsApp */}
+        {/* Top highlight — premium glass reflection */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent"
+        />
+
+        {/* LEFT: WhatsApp with pulse + gradient + glow */}
         <div className="flex flex-1 items-center justify-start">
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Cotizar por WhatsApp"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_-4px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-105 hover:brightness-105"
-          >
-            <MessageCircle className="h-5 w-5" aria-hidden />
-          </a>
+          <div className="relative">
+            {/* Expanding pulse ring (loops continuously) */}
+            <span
+              aria-hidden
+              className="absolute inset-0 rounded-full bg-[#25D366]/55 animate-pulse-ring"
+            />
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Cotizar por WhatsApp"
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#34e07a] via-[#25D366] to-[#0d8a4a] text-white shadow-[0_6px_24px_-4px_rgba(37,211,102,0.85),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_32px_-4px_rgba(37,211,102,1)]"
+            >
+              <MessageCircle className="h-5 w-5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]" aria-hidden />
+            </a>
+            {/* Activity indicator dot — "estamos disponibles" */}
+            <span
+              aria-hidden
+              className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5"
+            >
+              <span className="absolute inset-0 rounded-full bg-[#4ade80] opacity-75 animate-ping" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#4ade80] ring-2 ring-ink animate-pulse-dot" />
+            </span>
+          </div>
         </div>
 
-        {/* CENTER: Logo */}
+        {/* CENTER: Logo with subtle glow halo */}
         <Link
           href="/"
-          className="flex shrink-0 items-center"
+          className="relative flex shrink-0 items-center"
           aria-label="ClimaXpress — Inicio"
         >
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-10 scale-110 rounded-full bg-brand/25 blur-2xl"
+          />
           <Image
             src="/products/LogosinFondo.png"
             alt="Logo de ClimaXpress"
