@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/#aerocoolers', label: 'Aerocoolers' },
   { href: '/#calentones', label: 'Calentones' },
   { href: '/#como-funciona', label: 'Cómo funciona' },
+  { href: '/#cotizador', label: 'Cotizar' },
   { href: '/#testimonios', label: 'Testimonios' },
 ];
 
