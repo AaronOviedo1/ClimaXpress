@@ -42,6 +42,10 @@ const gallery: GalleryImage[] = [
   { src: '/products/calentones/02.webp' },
   { src: '/products/calentones/03.webp' },
   { src: '/products/calentones/05.webp' },
+  { src: '/products/calentones/07.webp' },
+  { src: '/products/calentones/08.webp' },
+  { src: '/products/calentones/10.webp' },
+  { src: '/products/calentones/11.webp' },
 ];
 
 const sharedSpecs: Pick<Spec, 'label' | 'value' | 'icon'>[] = [
