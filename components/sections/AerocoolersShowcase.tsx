@@ -36,14 +36,14 @@ type Model = {
 // Galería unificada — el tab solo cambia el índice inicial.
 const gallery: GalleryImage[] = [
   { src: '/products/aerocoolers/ECO_FRESCO.png' },
-  { src: '/products/aerocoolers/IMG_4064.png', rotate: true },
+  { src: '/products/aerocoolers/IMG_4064.png' },
   { src: '/products/aerocoolers/TURBO_FRIO.png' },
   { src: '/products/aerocoolers/IMG_1038.jpeg' },
-  { src: '/products/aerocoolers/ecoyturbo01.png', rotate: true },
-  { src: '/products/aerocoolers/ecoyturbo02.png', rotate: true },
-  { src: '/products/aerocoolers/ecoyturbo03.png', rotate: true },
-  { src: '/products/aerocoolers/turbo01.png', rotate: true },
-  { src: '/products/aerocoolers/IMG_1251.jpeg', rotate: true },
+  { src: '/products/aerocoolers/ecoyturbo01.png' },
+  { src: '/products/aerocoolers/ecoyturbo02.png' },
+  { src: '/products/aerocoolers/ecoyturbo03.png' },
+  { src: '/products/aerocoolers/turbo01.png' },
+  { src: '/products/aerocoolers/IMG_1251.jpeg' },
 ];
 
 const models: Model[] = [
