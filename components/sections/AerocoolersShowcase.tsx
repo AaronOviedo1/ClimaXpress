@@ -19,10 +19,11 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { whatsappLink } from '@/lib/site';
+import { blurPlaceholders } from '@/lib/blur-placeholders';
 
 type Spec = { label: string; value: string; icon: LucideIcon };
 
-type GalleryImage = { src: string; rotate?: boolean };
+type GalleryImage = { src: string };
 
 type Model = {
   id: 'eco' | 'turbo';
@@ -35,15 +36,15 @@ type Model = {
 
 // Galería unificada — el tab solo cambia el índice inicial.
 const gallery: GalleryImage[] = [
-  { src: '/products/aerocoolers/ECO_FRESCO.png' },
-  { src: '/products/aerocoolers/IMG_4064.png' },
-  { src: '/products/aerocoolers/TURBO_FRIO.png' },
-  { src: '/products/aerocoolers/IMG_1038.jpeg' },
-  { src: '/products/aerocoolers/ecoyturbo01.png' },
-  { src: '/products/aerocoolers/ecoyturbo02.png' },
-  { src: '/products/aerocoolers/ecoyturbo03.png' },
-  { src: '/products/aerocoolers/turbo01.png' },
-  { src: '/products/aerocoolers/IMG_1251.jpeg' },
+  { src: '/products/aerocoolers/ECO_FRESCO.webp' },
+  { src: '/products/aerocoolers/IMG_4064.webp' },
+  { src: '/products/aerocoolers/TURBO_FRIO.webp' },
+  { src: '/products/aerocoolers/IMG_1038_copy.jpg' },
+  { src: '/products/aerocoolers/ecoyturbo01.webp' },
+  { src: '/products/aerocoolers/ecoyturbo02.webp' },
+  { src: '/products/aerocoolers/ecoyturbo03.webp' },
+  { src: '/products/aerocoolers/turbo01.webp' },
+  { src: '/products/aerocoolers/IMG_1251.webp' },
 ];
 
 const models: Model[] = [
@@ -152,8 +153,8 @@ export function AerocoolersShowcase() {
         )
           .fromTo(
             '[data-cool-product]',
-            { xPercent: 60, opacity: 0, rotate: -8 },
-            { xPercent: 0, opacity: 1, rotate: 0, duration: 1.2 },
+            { xPercent: 60, opacity: 0 },
+            { xPercent: 0, opacity: 1, duration: 1.2 },
             0
           )
           .fromTo(
@@ -173,6 +174,12 @@ export function AerocoolersShowcase() {
             { x: -30, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.5 },
             0.75
+          )
+          .fromTo(
+            '[data-cool-tagline]',
+            { x: -30, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5 },
+            0.78
           )
           .fromTo(
             '[data-cool-price]',
@@ -290,7 +297,7 @@ export function AerocoolersShowcase() {
             })}
           </div>
 
-          <p className="mt-3 text-sm text-white/55">{model.tagline}</p>
+          <p data-cool-tagline className="mt-3 text-sm text-white/55">{model.tagline}</p>
 
           {/* Precio */}
           <div data-cool-price className="mt-5">
@@ -362,7 +369,10 @@ export function AerocoolersShowcase() {
                       alt={`Aerocooler ${i + 1} de ClimaXpress`}
                       fill
                       sizes="(max-width: 768px) 80vw, 40vw"
-                      className={`object-contain drop-shadow-[0_30px_60px_rgba(79,179,217,0.4)] ${img.rotate ? 'rotate-90' : ''}`}
+                      placeholder="blur"
+                      blurDataURL={blurPlaceholders[img.src]}
+                      unoptimized
+                      className="object-contain drop-shadow-[0_30px_60px_rgba(79,179,217,0.4)]"
                     />
                   </div>
                 </div>

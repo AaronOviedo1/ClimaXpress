@@ -18,10 +18,11 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { whatsappLink } from '@/lib/site';
+import { blurPlaceholders } from '@/lib/blur-placeholders';
 
 type Spec = { label: string; value: string; icon: LucideIcon };
 
-type GalleryImage = { src: string; rotate?: boolean };
+type GalleryImage = { src: string };
 
 type Model = {
   id: 'cafe-obscuro' | 'gris-claro' | 'cafe-gratinado';
@@ -35,12 +36,12 @@ type Model = {
 
 // Galería unificada — el tab solo cambia el índice inicial.
 const gallery: GalleryImage[] = [
-  { src: '/products/calentones/cal-01.JPG' },
-  { src: '/products/calentones/04.jpg' },
-  { src: '/products/calentones/06.jpg' },
-  { src: '/products/calentones/02.JPG' },
-  { src: '/products/calentones/03.JPG' },
-  { src: '/products/calentones/05.png' },
+  { src: '/products/calentones/cal-01.webp' },
+  { src: '/products/calentones/04.webp' },
+  { src: '/products/calentones/06.webp' },
+  { src: '/products/calentones/02.webp' },
+  { src: '/products/calentones/03.webp' },
+  { src: '/products/calentones/05.webp' },
 ];
 
 const sharedSpecs: Pick<Spec, 'label' | 'value' | 'icon'>[] = [
@@ -166,8 +167,8 @@ export function CalentonesShowcase() {
         )
           .fromTo(
             '[data-warm-product]',
-            { xPercent: 60, opacity: 0, rotate: -8 },
-            { xPercent: 0, opacity: 1, rotate: 0, duration: 1.2 },
+            { xPercent: 60, opacity: 0 },
+            { xPercent: 0, opacity: 1, duration: 1.2 },
             0
           )
           .fromTo(
@@ -187,6 +188,12 @@ export function CalentonesShowcase() {
             { x: -30, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.5 },
             0.75
+          )
+          .fromTo(
+            '[data-warm-tagline]',
+            { x: -30, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5 },
+            0.78
           )
           .fromTo(
             '[data-warm-price]',
@@ -304,7 +311,7 @@ export function CalentonesShowcase() {
             })}
           </div>
 
-          <p className="mt-3 text-sm text-white/55">{model.tagline}</p>
+          <p data-warm-tagline className="mt-3 text-sm text-white/55">{model.tagline}</p>
 
           {/* Precio */}
           <div data-warm-price className="mt-5">
@@ -379,7 +386,10 @@ export function CalentonesShowcase() {
                       alt={`Calentón ${i + 1} de ClimaXpress`}
                       fill
                       sizes="(max-width: 768px) 80vw, 40vw"
-                      className={`rounded-3xl object-contain drop-shadow-[0_30px_60px_rgba(245,185,25,0.4)] ${img.rotate ? 'rotate-90' : ''}`}
+                      placeholder="blur"
+                      blurDataURL={blurPlaceholders[img.src]}
+                      unoptimized
+                      className="rounded-3xl object-contain drop-shadow-[0_30px_60px_rgba(245,185,25,0.4)]"
                     />
                   </div>
                 </div>
