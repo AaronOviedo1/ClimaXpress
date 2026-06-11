@@ -205,7 +205,7 @@ export function Hero() {
               Renta de aerocoolers
             </span>
             <span className="block bg-gradient-to-b from-brand-sun via-brand-sun to-[#f08018] bg-clip-text text-transparent">
-              y calentones
+              y calentones en Hermosillo
             </span>
           </h1>
           <p

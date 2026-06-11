@@ -5,28 +5,41 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { aerocoolers, aerocoolerGalleryImages } from '@/lib/products';
-import { whatsappLink } from '@/lib/site';
+import { siteConfig, whatsappLink } from '@/lib/site';
+import { JsonLd } from '@/components/JsonLd';
+import { serviceSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Aerocoolers — Renta e Instalación',
+  title: 'Renta de Aerocoolers en Hermosillo',
   description:
-    'Renta de aerocoolers para hogar y negocio: enfriadores evaporativos con aire fresco y limpio, bajo consumo y montaje profesional. Cotiza tu renta con ClimaXpress.',
+    'Renta de aerocoolers en Hermosillo, San Carlos y San Pedro el Saucito: enfriadores evaporativos con aire fresco y limpio, bajo consumo, entrega e instalación profesional. Cotiza tu renta con ClimaXpress.',
   keywords: [
-    'aerocooler',
-    'aerocoolers',
-    'enfriador evaporativo',
-    'aire fresco',
-    'enfriadores de aire',
+    'renta de aerocoolers en Hermosillo',
+    'aerocoolers en renta',
+    'aerocoolers Hermosillo',
     'renta de aerocooler',
-    'instalación aerocooler',
+    'enfriador evaporativo Hermosillo',
+    'enfriadores de aire',
+    'aire fresco',
+    'instalación de aerocooler',
   ],
   alternates: { canonical: '/productos/aerocoolers' },
   openGraph: {
-    title: 'Aerocoolers — Renta e Instalación | ClimaXpress',
+    title: 'Renta de Aerocoolers en Hermosillo | ClimaXpress',
     description:
-      'Renta de enfriadores evaporativos con instalación profesional, garantía y servicio express.',
+      'Renta de enfriadores evaporativos en Hermosillo con entrega, instalación profesional y garantía.',
   },
 };
+
+const aerocoolerServiceSchema = serviceSchema({
+  name: 'Renta de aerocoolers en Hermosillo',
+  description:
+    'Renta de enfriadores evaporativos (aerocoolers) en Hermosillo y alrededores, con entrega e instalación profesional incluida.',
+  serviceType: 'Renta de enfriadores evaporativos',
+  url: `${siteConfig.url}/productos/aerocoolers`,
+  minPrice: 450,
+  maxPrice: 650,
+});
 
 const features = [
   'Aire fresco y filtrado',
@@ -39,6 +52,7 @@ const features = [
 export default function AerocoolersPage() {
   return (
     <div className="bg-surface text-ink">
+      <JsonLd data={aerocoolerServiceSchema} />
       <section
         aria-labelledby="aero-hero"
         className="bg-brand-gradient text-white"
@@ -52,12 +66,14 @@ export default function AerocoolersPage() {
               id="aero-hero"
               className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl"
             >
-              Enfriamiento eficiente para tu hogar o negocio
+              Renta de aerocoolers en Hermosillo
             </h1>
             <p className="max-w-2xl text-base text-white/90 md:text-lg">
-              Los aerocoolers son enfriadores evaporativos que refrescan el
-              aire con un consumo mínimo. Ideales para climas cálidos y secos,
-              con aire siempre limpio y renovado.
+              Renta de aerocoolers en Hermosillo, San Carlos y San Pedro el
+              Saucito: enfriadores evaporativos que refrescan el aire con un
+              consumo mínimo. Ideales para el clima cálido y seco de Sonora,
+              con aire siempre limpio y renovado, entrega e instalación
+              profesional incluida.
             </p>
             <ul className="mt-2 grid gap-2 sm:grid-cols-2">
               {features.map((feature) => (

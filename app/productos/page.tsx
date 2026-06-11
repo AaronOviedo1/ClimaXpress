@@ -7,14 +7,16 @@ import { ProductGrid } from '@/components/product/ProductGrid';
 import { aerocoolers, calentones } from '@/lib/products';
 
 export const metadata: Metadata = {
-  title: 'Productos — Aerocoolers y Calentones',
+  title: 'Renta de Aerocoolers y Calentones en Hermosillo — Catálogo',
   description:
-    'Catálogo de aerocoolers y calentones de agua a gas en renta. Equipos con instalación profesional, garantía y asesoría para tu hogar o negocio.',
+    'Catálogo de aerocoolers y calentones en renta en Hermosillo. Enfriadores evaporativos y calentadores de paso a gas con entrega, instalación profesional y garantía.',
   keywords: [
-    'aerocoolers',
-    'calentones',
-    'catálogo aerocoolers',
-    'catálogo calentones',
+    'renta de aerocoolers en Hermosillo',
+    'renta de calentones en Hermosillo',
+    'aerocoolers en renta',
+    'calentones en renta',
+    'catálogo aerocoolers Hermosillo',
+    'catálogo calentones Hermosillo',
     'enfriadores evaporativos',
     'calentadores de paso',
   ],
@@ -28,8 +30,8 @@ export default function ProductosPage() {
         <Container>
           <SectionHeading
             eyebrow="Catálogo"
-            title="Productos ClimaXpress"
-            description="Equipos en renta seleccionados para climatizar y dar agua caliente a tu hogar o negocio."
+            title="Renta de aerocoolers y calentones en Hermosillo"
+            description="Equipos en renta seleccionados para climatizar y dar agua caliente a tu hogar o negocio en Hermosillo y alrededores."
             as="h1"
           />
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

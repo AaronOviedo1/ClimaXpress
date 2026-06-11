@@ -5,28 +5,40 @@ import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { calentones } from '@/lib/products';
-import { whatsappLink } from '@/lib/site';
+import { siteConfig, whatsappLink } from '@/lib/site';
+import { JsonLd } from '@/components/JsonLd';
+import { serviceSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Calentones de Agua — Calentadores de Paso',
+  title: 'Renta de Calentones en Hermosillo',
   description:
-    'Renta de calentones de paso a gas: agua caliente al instante, sin esperas y con mayor ahorro. Renta, instalación y garantía con ClimaXpress.',
+    'Renta de calentones en Hermosillo, San Carlos y San Pedro el Saucito: calentadores de paso a gas con agua caliente al instante, entrega e instalación. Renta y garantía con ClimaXpress.',
   keywords: [
-    'calentón',
-    'calentones',
-    'calentador de gas',
-    'calentador de paso',
-    'agua caliente al instante',
+    'renta de calentones en Hermosillo',
+    'calentones en renta',
+    'calentones Hermosillo',
     'renta de calentones',
+    'calentador de paso Hermosillo',
+    'calentón de paso',
+    'agua caliente al instante',
     'instalación de calentón',
   ],
   alternates: { canonical: '/productos/calentones' },
   openGraph: {
-    title: 'Calentones de Agua — Calentadores de Paso | ClimaXpress',
+    title: 'Renta de Calentones en Hermosillo | ClimaXpress',
     description:
-      'Renta de calentones de paso a gas con instalación profesional, garantía y servicio express.',
+      'Renta de calentones de paso a gas en Hermosillo con entrega, instalación profesional y garantía.',
   },
 };
+
+const calentonServiceSchema = serviceSchema({
+  name: 'Renta de calentones en Hermosillo',
+  description:
+    'Renta de calentones de paso a gas en Hermosillo y alrededores, con agua caliente al instante, entrega e instalación profesional incluida.',
+  serviceType: 'Renta de calentadores de paso a gas',
+  url: `${siteConfig.url}/productos/calentones`,
+  minPrice: 550,
+});
 
 const features = [
   'Agua caliente al instante',
@@ -39,6 +51,7 @@ const features = [
 export default function CalentonesPage() {
   return (
     <div className="bg-surface text-ink">
+      <JsonLd data={calentonServiceSchema} />
       <section
         aria-labelledby="cal-hero"
         className="relative overflow-hidden bg-gradient-to-br from-brand-sun via-orange-500 to-brand-sunDark text-white"
@@ -52,11 +65,13 @@ export default function CalentonesPage() {
               id="cal-hero"
               className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl"
             >
-              Agua caliente al instante, todo el año
+              Renta de calentones en Hermosillo
             </h1>
             <p className="max-w-2xl text-base text-white/95 md:text-lg">
-              Calentones de paso a gas que solo encienden cuando los necesitas.
-              Más ahorro, sin esperas y con instalación profesional.
+              Renta de calentones (calentadores de paso a gas) en Hermosillo,
+              San Carlos y San Pedro el Saucito. Agua caliente al instante, solo
+              encienden cuando los necesitas: más ahorro, sin esperas y con
+              entrega e instalación profesional incluida.
             </p>
             <ul className="mt-2 grid gap-2 sm:grid-cols-2">
               {features.map((feature) => (

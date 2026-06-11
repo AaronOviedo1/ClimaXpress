@@ -5,7 +5,9 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
+import { JsonLd } from '@/components/JsonLd';
 import { siteConfig } from '@/lib/site';
+import { localBusinessSchema } from '@/lib/structured-data';
 
 const outfit = localFont({
   src: '../public/fonts/Outfit/Outfit-VariableFont_wght.ttf',
@@ -17,23 +19,26 @@ const outfit = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'ClimaXpress | Renta de Aerocoolers y Calentones de Agua',
+    default: 'Renta de Aerocoolers y Calentones en Hermosillo | ClimaXpress',
     template: '%s | ClimaXpress',
   },
   description:
-    'Renta e instalación de aerocoolers y calentones de agua a gas. Climatización eficiente y agua caliente al instante. Asesoría, instalación profesional y garantía.',
+    'Renta de aerocoolers y calentones en Hermosillo, San Carlos y San Pedro el Saucito. Enfriadores evaporativos y calentadores de paso a gas con entrega, instalación profesional y garantía.',
   keywords: [
-    'aerocoolers',
-    'aerocooler',
-    'calentones',
-    'calentones de agua',
-    'calentón de paso',
-    'calentadores de agua',
-    'climatización',
-    'aire acondicionado evaporativo',
-    'enfriadores de aire',
+    'renta de aerocoolers en Hermosillo',
+    'renta de calentones en Hermosillo',
+    'aerocoolers en renta',
+    'calentones en renta',
+    'aerocoolers Hermosillo',
+    'calentones Hermosillo',
     'renta de aerocoolers',
     'renta de calentones',
+    'enfriadores evaporativos Hermosillo',
+    'calentadores de paso Hermosillo',
+    'aerocooler',
+    'calentón de paso',
+    'climatización Hermosillo',
+    'aire acondicionado evaporativo',
     'instalación de aerocooler',
     'instalación de calentón',
     'ClimaXpress',
@@ -44,9 +49,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_MX',
     siteName: 'ClimaXpress',
-    title: 'ClimaXpress | Aerocoolers y Calentones',
+    title: 'Renta de Aerocoolers y Calentones en Hermosillo | ClimaXpress',
     description:
-      'Climatización y agua caliente con servicio express. Aerocoolers y calentones con instalación y garantía.',
+      'Renta de aerocoolers y calentones en Hermosillo con entrega, instalación profesional y garantía.',
     images: [
       {
         url: '/og-image.jpg',
@@ -58,8 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ClimaXpress | Aerocoolers y Calentones',
-    description: 'Climatización y agua caliente con servicio express.',
+    title: 'Renta de Aerocoolers y Calentones en Hermosillo | ClimaXpress',
+    description:
+      'Renta de aerocoolers y calentones en Hermosillo con entrega e instalación.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -90,23 +96,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: siteConfig.name,
-    description: siteConfig.description,
-    image: `${siteConfig.url}/products/LogosinFondo_Circular.png`,
-    url: siteConfig.url,
-    // TODO: reemplazar con el teléfono real en formato internacional
-    telephone: '+52-XXX-XXX-XXXX',
-    priceRange: '$$',
-    address: {
-      '@type': 'PostalAddress',
-      ...siteConfig.address,
-    },
-    sameAs: [siteConfig.socials.instagram, siteConfig.socials.facebook],
-  };
-
   return (
     <html lang="es-MX" className={outfit.variable}>
       <body className="min-h-screen bg-ink font-sans text-white">
@@ -122,10 +111,7 @@ export default function RootLayout({
           <Footer />
         </SmoothScrollProvider>
         <WhatsAppButton />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={localBusinessSchema()} />
       </body>
     </html>
   );

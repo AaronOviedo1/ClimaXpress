@@ -8,6 +8,7 @@ const quickLinks = [
   { href: '/#aerocoolers', label: 'Aerocoolers' },
   { href: '/#calentones', label: 'Calentones' },
   { href: '/#como-funciona', label: 'Cómo funciona' },
+  { href: '/#faq', label: 'Preguntas frecuentes' },
 ];
 
 export function Footer() {
